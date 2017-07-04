@@ -11,7 +11,7 @@ namespace test1.Controllers
     public class HomeController : Controller
     {
 
-        private IDataGetter data = new DataGetter();
+        private static IDataGetter data = new DataGetter();
 
         public ActionResult Index()
         {
@@ -60,17 +60,8 @@ namespace test1.Controllers
 
         public ActionResult List()
         {
-            /*
-
-            Contact contact = new Contact() {
-                FirstName = "Aras",
-                LastName = "Braziunas",
-                Age = 23,
-            };
-            */
-
             
-
+        
             return View(data.GetContacts());
         }
 
@@ -83,7 +74,9 @@ namespace test1.Controllers
         [HttpPost]
         public ActionResult Add(Contact contact)
         {
+
             data.AddContact(contact);
+
             return RedirectToAction("List");
             //return Content(contact.FirstName);
         }

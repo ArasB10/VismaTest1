@@ -61,12 +61,16 @@ namespace test1.Controllers
         public ActionResult List()
         {
             
-        
             return View(data.GetContacts());
         }
 
         public ActionResult Details(int id)
         {
+
+            if ( id <0 || id>=data.GetContacts().Count )
+            {
+                throw new Exception("Error with index");
+            }
 
             return View(data.GetContact(id));
         }
@@ -74,10 +78,17 @@ namespace test1.Controllers
         [HttpPost]
         public ActionResult Add(Contact contact)
         {
+            if (ModelState.IsValid)
+            {
+                data.AddContact(contact);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                throw new Exception("Validation error");
+            }
 
-            data.AddContact(contact);
-
-            return RedirectToAction("List");
+            
             //return Content(contact.FirstName);
         }
 

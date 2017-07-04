@@ -8,26 +8,25 @@
 
 
 <!--
-    
-    
+
         <input type="text" name="firstName" value="Name" /><br>
         <input type = "text" name = "lastName" value="Last name"/><br>
         <input type="email" name="email" value="Email" /> <br>
         <input type="submit" />
-    
-
-    
+   
 -->
 
 
 
-<form action="/home/Add" method="post">
+<form name="contactForm" action="/home/Add" onsubmit="return validateForm()" method="post">
     First name:<br>
-    <input type="text" name="firstName"><br>
+    <input type="text" name="firstName" required><br>
     Last name:<br>
     <input type="text" name="lastName"><br>
     Email:<br>
-    <input type="email" name="email"/> <br>
+    <input type="email" name="email"required> <br>
+    Phone number:<br>
+    <input type="text" name="phone" pattern="\+\d{11}" title="The number must be with +370" required /><br>
     <input type="submit" value="Submit">
 
 </form>
@@ -36,3 +35,13 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    function validateForm() {
+        var x = document.forms["contactForm"]["lastName"].value;
+        if (x == "") {
+            alert("Uzmirsai");
+            return false;
+        }
+    }
+</script>

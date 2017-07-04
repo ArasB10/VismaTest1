@@ -20,7 +20,7 @@ namespace test1.Services
 
             AddContact(new Contact() { FirstName = "Benas", LastName = "Orlovas" });
 
-            AddContact(new Contact() { FirstName = "Povilas", LastName = "Zvirblis" });
+            AddContact(new Contact() { FirstName = "Povilas", LastName = "Zvirblis", Phone = "+37062959639" });
         }
 
         public Contact GetContact(int id)

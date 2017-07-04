@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using test1.Models;
+using test1.Services;
 
 namespace test1.Controllers
 {
     public class HomeController : Controller
     {
 
-        private Contact contact = new Contact();
+        private IDataGetter data = new DataGetter();
 
         public ActionResult Index()
         {
@@ -31,18 +32,19 @@ namespace test1.Controllers
             return View();
         }
 
+        /*
         public ActionResult Name(int id, string typeSet)
         {
-            /*
+            
 
             Contact contact = new Contact() {
                 FirstName = "Aras",
                 LastName = "Braziunas",
                 Age = 23,
             };
-            */
-            
-            List<Contact> list = contact.GetContacts();
+           
+
+        IDictionary<int, Contact> list = data.GetContacts();
 
             if (typeSet.Equals("up"))
             {
@@ -52,15 +54,9 @@ namespace test1.Controllers
             {
                 return Content(list.Where(item => item.Id == id).First().FirstName.ToString().ToLower());
             }
-        }
+        } */
 
-        public ActionResult Age(int id)
-        {
-           
-            List<Contact> list = contact.GetContacts();
 
-            return View(list.Where(item => item.Id == id).First());
-        }
 
         public ActionResult List()
         {
@@ -72,18 +68,31 @@ namespace test1.Controllers
                 Age = 23,
             };
             */
-           
-            List<Contact> list = contact.GetContacts();
 
-            return View(list);
+            
+
+            return View(data.GetContacts());
         }
 
         public ActionResult Details(int id)
         {
-           
-            List<Contact> list = contact.GetContacts();
 
-            return View(list.Where(item => item.Id == id).First());
+            return View(data.GetContact(id));
         }
+
+        [HttpPost]
+        public ActionResult Add(Contact contact)
+        {
+            data.AddContact(contact);
+            return RedirectToAction("List");
+            //return Content(contact.FirstName);
+        }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model test1.Models.Contact
+﻿@model MyLibrary.Model.Contact
 
 @{
     ViewBag.Title = "Create";
@@ -36,12 +36,4 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-<script>
-    function validateForm() {
-        var x = document.forms["contactForm"]["lastName"].value;
-        if (x == "") {
-            alert("Uzmirsai");
-            return false;
-        }
-    }
-</script>
+<script src="~/Scripts/MyScripts.js"></script>

@@ -26,7 +26,7 @@
     Email:<br>
     <input type="email" name="email"required> <br>
     Phone number:<br>
-    <input type="text" name="phone" pattern="\+\d{11}" title="The number must be with +370" required /><br>
+    <input type="text" name="phone" pattern="\+\d{11}|\d{9}" title="The number must be with +370" required /><br>
     <input type="submit" value="Submit">
 
 </form>
@@ -36,4 +36,4 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-<script src="~/Scripts/MyScripts.js"></script>
+<script src="~/Scripts/addViewScripts.js"></script>

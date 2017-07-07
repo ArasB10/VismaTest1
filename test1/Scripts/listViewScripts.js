@@ -1,4 +1,4 @@
-﻿function myFunction() {
+﻿function seacrhBar() {
     // Declare variables
     var input, filter, table, tr, td, i;
     input = document.getElementById("searchBar");
@@ -16,13 +16,5 @@
                 tr[i].style.display = "none";
             }
         }
-    }
-}
-
-function validateForm() {
-    var x = document.forms["contactForm"]["lastName"].value;
-    if (x == "") {
-        alert("Uzmirsai");
-        return false;
     }
 }

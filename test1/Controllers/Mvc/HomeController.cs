@@ -66,7 +66,7 @@ namespace test1.Controllers
 
         public ActionResult Details(int id)
         {
-
+            // FIX
             if ( id <0 || id>=data.GetContacts().Count )
             {
                 throw new Exception("Error with index");

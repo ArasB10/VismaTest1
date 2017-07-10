@@ -1,0 +1,5 @@
+C:\Users\aras.braziunas\Documents\Visual Studio 2017\Projects\MyLibrary\MyLibrary\bin\Debug\MyLibrary.dll
+C:\Users\aras.braziunas\Documents\Visual Studio 2017\Projects\MyLibrary\MyLibrary\bin\Debug\MyLibrary.pdb
+C:\Users\aras.braziunas\Documents\Visual Studio 2017\Projects\MyLibrary\MyLibrary\obj\Debug\MyLibrary.dll
+C:\Users\aras.braziunas\Documents\Visual Studio 2017\Projects\MyLibrary\MyLibrary\obj\Debug\MyLibrary.pdb
+C:\Users\aras.braziunas\Documents\Visual Studio 2017\Projects\MyLibrary\MyLibrary\obj\Debug\MyLibrary.csprojResolveAssemblyReference.cache

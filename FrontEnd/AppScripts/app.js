@@ -1,5 +1,9 @@
-﻿var app = angular.module("testApp", ["ngRoute"]);
+﻿var app = angular.module("testApp", ["ngRoute", 'angular-toArrayFilter']);
 
+
+String.prototype.replaceAt = function (index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + 1);
+};
 
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -25,18 +29,15 @@ app.config(function ($routeProvider, $locationProvider) {
 
 
 
-app.controller('controllerList', function ($http, $route) {
+app.controller('controllerList', function ($scope, $http, $route) {
     var self = this;
     var uri = 'http://localhost:55946/api/Contact/';
-
     $http.get(uri).
         then(function (response) {
             self.contacts = response.data;
         });
 
     self.delete = function (contact) {
-
-
 
         $http.delete(uri + contact.Id).then(
 
@@ -57,13 +58,19 @@ app.controller('controllerList', function ($http, $route) {
 app.controller('controllerCreate', function ($http, $location) {
     var self = this;
     self.contact = {
-        firstName: "Test firstName",
-        lastName: "Test lastName",
-        email: "arasbraziunas@gmail.com",
-        phone: "862959639"
+        firstName: "Required",
+        lastName: "Required",
+        email: "Required",
+        phone: "Required"
     };
 
     self.create = function () {
+
+        if (self.contact.phone.charAt(0) === "8") {
+
+            self.contact.phone = self.contact.phone.replaceAt(0, "+370");
+        }
+
         $http({
             method: 'POST',
             url: 'http://localhost:55946/api/Contact',
@@ -100,12 +107,18 @@ app.controller('controllerEdit', function ($http, $routeParams, $location) {
 
 
     self.edit = function () {
+
+        if (self.contact.Phone.charAt(0) === "8") {
+
+            self.contact.Phone = self.contact.Phone.replaceAt(0, "+370");
+        }
+
         $http({
             method: 'PUT',
             url: 'http://localhost:55946/api/Contact',
             params: { id: $routeParams.id },
             data: self.contact
-            
+
         }).then(function (response) {
             $location.url("/list");
         });

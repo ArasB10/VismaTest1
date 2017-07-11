@@ -1,12 +1,12 @@
 ﻿<form ng-controller="controllerCreate as vm" ng-submit="vm.create()">
 
-    <input type="text" name="FirstName" ng-model="vm.contact.firstName" value="{{vm.contact.firstName}}"><br />
+    <input type="text" name="FirstName" ng-model="vm.contact.firstName" required value="{{vm.contact.firstName}}"><br />
 
-    <input type="text" name="LastName" ng-model="vm.contact.lastName" value="{{vm.contact.lastName}}"><br />
+    <input type="text" name="LastName" ng-model="vm.contact.lastName" required value="{{vm.contact.lastName}}"><br />
 
-    <input type="text" name="Email" ng-model="vm.contact.email" value="{{vm.contact.email}}"><br />
+    <input type="email" name="Email" ng-model="vm.contact.email" value="{{vm.contact.email}}"><br />
 
-    <input type="text" name="FirstName" ng-model="vm.contact.phone" value="{{vm.contact.phone}}"><br />
+    <input type="text" name="Phone" pattern="\+\d{11}|\d{9}" required ng-model="vm.contact.phone" value="{{vm.contact.phone}}"><br />
 
     <input type="submit" id="submit" value="Submit" />
 

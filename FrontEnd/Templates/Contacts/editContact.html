@@ -1,0 +1,13 @@
+﻿<form ng-controller="controllerEdit as vm" ng-submit="vm.edit()">
+
+    <input type="text" name="FirstName" ng-model="vm.contact.FirstName" required value="{{vm.contact.FirstName}}"><br />
+
+    <input type="text" name="LastName" ng-model="vm.contact.LastName" required value="{{vm.contact.LastName}}"><br />
+
+    <input type="email" name="Email" ng-model="vm.contact.Email" required value="{{vm.contact.Email}}"><br />
+
+    <input type="text" name="Phone" pattern="\+\d{11}|\d{9}" required ng-model="vm.contact.Phone" title="The number must start with +370 or 8" value="{{vm.contact.Phone}}"><br />
+
+    <input type="submit" id="submit" value="Edit" />
+
+</form>

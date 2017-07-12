@@ -1,10 +1,5 @@
 ﻿var app = angular.module("testApp", ["ngRoute", 'angular-toArrayFilter']);
 
-
-String.prototype.replaceAt = function (index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + 1);
-};
-
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when("/list", {
@@ -66,10 +61,7 @@ app.controller('controllerCreate', function ($http, $location) {
 
     self.create = function () {
 
-        if (self.contact.phone.charAt(0) === "8") {
-
-            self.contact.phone = self.contact.phone.replaceAt(0, "+370");
-        }
+        self.contact.phone = globalNumber(self.contact.phone);
 
         $http({
             method: 'POST',
@@ -104,15 +96,10 @@ app.controller('controllerEdit', function ($http, $routeParams, $location) {
         self.contact = response.data;
     });
 
-
-
     self.edit = function () {
 
-        if (self.contact.Phone.charAt(0) === "8") {
-
-            self.contact.Phone = self.contact.Phone.replaceAt(0, "+370");
-        }
-
+        self.contact.Phone = globalNumber(self.contact.Phone);
+       
         $http({
             method: 'PUT',
             url: 'http://localhost:55946/api/Contact',

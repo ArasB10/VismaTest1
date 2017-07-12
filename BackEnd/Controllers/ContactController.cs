@@ -1,5 +1,5 @@
-﻿using MyLibrary.Data;
-using MyLibrary.Model;
+﻿using MyLibrary;
+using MyLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace BackEnd.Controllers
     public class ContactController : ApiController
     {
 
-        private static IDataGetter data = new DataGetter();
+        private static IDataGetter data = new DbGetter();
 
         // GET: api/Contact
         public IDictionary<int, Contact> Get()

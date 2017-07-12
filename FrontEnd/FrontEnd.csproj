@@ -65,6 +65,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppScripts\8to370.js" />
+    <Content Include="AppScripts\replaceAt.js" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular.min.js.map" />

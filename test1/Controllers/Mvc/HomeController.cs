@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MyLibrary.Model;
 using MyLibrary.Data;
+using MyLibrary;
 
 namespace test1.Controllers
 {

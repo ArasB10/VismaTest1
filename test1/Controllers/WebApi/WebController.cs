@@ -1,5 +1,5 @@
-﻿using MyLibrary.Data;
-using MyLibrary.Model;
+﻿using MyLibrary;
+using MyLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -99,7 +99,7 @@ app.controller('controllerEdit', function ($http, $routeParams, $location) {
     self.edit = function () {
 
         self.contact.Phone = globalNumber(self.contact.Phone);
-       
+
         $http({
             method: 'PUT',
             url: 'http://localhost:55946/api/Contact',
@@ -109,6 +109,28 @@ app.controller('controllerEdit', function ($http, $routeParams, $location) {
         }).then(function (response) {
             $location.url("/list");
         });
+    };
+});
+
+app.controller('controllerSend', function ($http, $route) {
+    var self = this;
+
+    self.message = {
+        Text: "",
+        ContactsId: 0
+    };
+
+    self.send = function (number) {
+        $http({
+            method: 'POST',
+            url: 'http://localhost:55946/api/Message',
+            params: { id: number },
+            data: self.message
+        }).then(function (response) {
+            $route.reload();
+        });
+
+        //alert(self.message + number);
     };
 });
 

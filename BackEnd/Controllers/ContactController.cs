@@ -15,7 +15,7 @@ namespace BackEnd.Controllers
     public class ContactController : ApiController
     {
 
-        private static IDataGetter data = new DbGetter();
+        private IDataGetter data = new DbGetter();
 
         // GET: api/Contact
         public IDictionary<int, Contact> Get()

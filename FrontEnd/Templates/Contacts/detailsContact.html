@@ -1,5 +1,21 @@
-﻿<h1>Details</h1>
-<ul ng-controller="controllerDetails as vm">
-    <li>{{vm.contact.FirstName}}</li>
-    <li>{{vm.contact.LastName}}</li>
-</ul>
+﻿<div ng-controller="controllerDetails as vm">
+
+    <h1>Details</h1>
+
+    <ul>
+        <li>{{vm.contact.FirstName}}</li>
+        <li>{{vm.contact.LastName}}</li>
+        <li>
+            <ul ng-repeat="message in vm.contact.Messages">
+                <li>{{message.Text}}</li>
+            </ul>
+        </li>
+    </ul>
+
+    <form ng-controller="controllerSend as ctrlSend" ng-submit="ctrlSend.send(vm.contact.Id)">
+        <textarea class="form-control" rows="5" ng-model="ctrlSend.message.Text"></textarea>
+        <input class="btn btn-primary" type="submit">
+    </form>
+
+</div>
+

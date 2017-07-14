@@ -6,7 +6,7 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: "/Templates/Contacts/listContact.html",
             controller: "controllerList"
         })
-        .when("/details/:id", {
+        .when("/contact/:id", {
             templateUrl: "/Templates/Contacts/detailsContact.html",
             controller: "controllerDetails"
         })
@@ -50,7 +50,7 @@ app.controller('controllerList', function ($scope, $http, $route) {
     };
 });
 
-app.controller('controllerCreate', function ($http, $location) {
+app.controller('controllerCreate', function ($scope, $http, $location) {
     var self = this;
     self.contact = {
         firstName: "Required",
@@ -71,6 +71,7 @@ app.controller('controllerCreate', function ($http, $location) {
             $location.url("/list");
         });
     };
+
 });
 
 app.controller('controllerDetails', function ($http, $routeParams) {

@@ -7,7 +7,8 @@
     <input type="email" name="Email" ng-model="vm.contact.email" value="{{vm.contact.email}}"><br />
     Phone<br />
     <input type="text" name="Phone" pattern="\+\d{11}|\d{9}" required ng-model="vm.contact.phone" title="The number must start with +370 or 8" value="{{vm.contact.phone}}"><br />
+    <br />
 
-    <input type="submit" id="submit" value="Submit" />
+    <input class="btn btn-primary" type="submit" id="submit" value="Create contact" />
 
 </form>

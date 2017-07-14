@@ -13,7 +13,12 @@ namespace BackEnd.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
     public class MessageController : ApiController
     {
-        private IDataGetter data = new DbGetter();
+        private IDataGetter data;
+
+        public MessageController(IDataGetter data)
+        {
+            this.data = data;
+        }
 
         // GET: api/Message
         public IEnumerable<string> Get()

@@ -3,18 +3,20 @@
     <h1>Details</h1>
 
     <ul>
-        <li>{{vm.contact.FirstName}}</li>
-        <li>{{vm.contact.LastName}}</li>
-        <li>
-            <ul ng-repeat="message in vm.contact.Messages">
-                <li>{{message.Text}}</li>
-            </ul>
-        </li>
+        <li>First name: {{vm.contact.FirstName}}</li>
+        <li>Last name: {{vm.contact.LastName}}</li>
+        <li>Phone: {{vm.contact.Phone}}</li>
+        <li>Email: {{vm.contact.Email}}</li>        
+    </ul>
+
+    <span>List of messages</span>
+    <ul ng-repeat="message in vm.contact.Messages">
+        <li>{{message.Text}}</li>
     </ul>
 
     <form ng-controller="controllerSend as ctrlSend" ng-submit="ctrlSend.send(vm.contact.Id)">
         <textarea class="form-control" rows="5" ng-model="ctrlSend.message.Text"></textarea>
-        <input class="btn btn-primary" type="submit">
+        <input class="btn btn-primary" type="submit" value="Send message">
     </form>
 
 </div>

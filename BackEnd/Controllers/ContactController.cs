@@ -11,7 +11,8 @@ using System.Web.Http.Cors;
 namespace BackEnd.Controllers
 {
 
-    [EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
+    [Authorize]
     public class ContactController : ApiController
     {
 
@@ -29,6 +30,7 @@ namespace BackEnd.Controllers
         }
 
         // GET: api/Contact/5
+        
         public IHttpActionResult Get(int id)
         {
             try

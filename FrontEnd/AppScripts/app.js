@@ -1,6 +1,9 @@
 ﻿var app = angular.module("testApp", ["ngRoute", 'angular-toArrayFilter']);
 
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider, $httpProvider) {
+
+    $httpProvider.defaults.withCredentials = true;
+
     $routeProvider
         .when("/list", {
             templateUrl: "/Templates/Contacts/listContact.html",
@@ -17,20 +20,55 @@ app.config(function ($routeProvider, $locationProvider) {
         .when("/edit/:id", {
             templateUrl: "/Templates/Contacts/editContact.html",
             controller: "controllerEdit"
+        })
+        .when("/login", {
+            templateUrl: "/Templates/Login/login.html",
+            controller: "controllerLogin"
         });
 
-    $locationProvider.html5Mode(true);
-});
 
+    $locationProvider.html5Mode(true);
+
+})
+
+    .service('authInterceptor', function ($q) { //custom interceptorius
+
+        var service = this;
+
+        service.responseError = function (response) {
+
+            if (response.status === 401) { //jeigu is api gauname 401 (unauthorised) errora 
+                window.location = "/login"; //redirectiname useri i login langa
+            }
+            return $q.reject(response);
+
+        };
+
+    })
+
+    .config(['$httpProvider', function ($httpProvider) {
+
+        $httpProvider.interceptors.push('authInterceptor'); //interceptorius
+
+    }]);
 
 
 app.controller('controllerList', function ($scope, $http, $route) {
     var self = this;
     var uri = 'http://localhost:55946/api/Contact/';
-    $http.get(uri).
-        then(function (response) {
-            self.contacts = response.data;
-        });
+
+    $http({
+        method: 'GET',
+        url: 'http://localhost:55946/api/Contact/'
+    }).then(function (response) {
+        self.contacts = response.data;
+    });
+
+
+    //$http.get(uri).
+    //    then(function (response) {
+    //        self.contacts = response.data;
+    //    });
 
     self.delete = function (contact) {
 
@@ -50,14 +88,17 @@ app.controller('controllerList', function ($scope, $http, $route) {
     };
 });
 
-app.controller('controllerCreate', function ($scope, $http, $location) {
+app.controller('controllerCreate', function ($http, $location, $route) {
     var self = this;
+
     self.contact = {
         firstName: "Required",
         lastName: "Required",
         email: "Required",
         phone: "Required"
     };
+
+    self.isShown = true;
 
     self.create = function () {
 
@@ -71,6 +112,12 @@ app.controller('controllerCreate', function ($scope, $http, $location) {
             $location.url("/list");
         });
     };
+
+    self.hi = function () {
+        self.isShown = !self.isShown;
+        alert(self.isShown);
+    };
+
 
 });
 
@@ -132,6 +179,21 @@ app.controller('controllerSend', function ($http, $route) {
         });
 
         //alert(self.message + number);
+    };
+});
+
+app.controller('controllerLogin', function ($http) {
+    var self = this;
+    self.login = function () {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:55946/api/login',
+            headers: {
+                'Location': "http://localhost:55885/list"
+            }
+        }).then(function (response) {
+            alert(response.data);
+        });
     };
 });
 

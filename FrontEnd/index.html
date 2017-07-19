@@ -5,6 +5,7 @@
     <base href="/" />
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.6.0/angular-local-storage.min.js"></script>
     <script src="AppScripts/replaceAt.js"></script>
     <script src="AppScripts/8to370.js"></script>
     <script src="AppScripts/app.js"></script>
@@ -26,11 +27,14 @@
                 <ul class="nav navbar-nav">
                     <!--<li><a href="create">Create</a></li>-->
                     <li><a href="list">Contacts</a></li>
+                    <li><a href="login">Login</a></li>
                 </ul>
             </div>
         </nav>
         
-        <div class="col-md-6" ng-view></div>
+        <div ng-view></div>
+
+        
 
         <!--<div ng-controller="controllerCreate as con" class="col-md-6" ng-include="'/Templates/Contacts/createContact.html'" ng-show="con.myVar"></div>-->
 

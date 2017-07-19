@@ -853,6 +853,7 @@
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Templates\Contacts\editContact.html" />
     <Content Include="Templates\Contacts\listContact.html" />
+    <Content Include="Templates\Login\login.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using MyLibrary;
+﻿using BackEnd.Services;
+using MyLibrary;
 using MyLibrary.Data;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,11 @@ using System.Web.Http.Cors;
 
 namespace BackEnd.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
     public class MessageController : ApiController
     {
         private IDataGetter data;
+        private SmsService smsService = new SmsService();
 
         public MessageController(IDataGetter data)
         {
@@ -60,6 +62,16 @@ namespace BackEnd.Controllers
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        // send message 
+        [HttpGet]
+        [Route("api/send/{phone:long}/{message}")]
+        public void SendMessage(long phone, string message)
+        {
+            smsService.sendSms(phone, message);
+            var myphone = phone;
+            var mymessage = message;
         }
     }
 }

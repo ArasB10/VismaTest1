@@ -1,14 +1,16 @@
-﻿<form ng-controller="controllerCreate as vm" ng-submit="vm.create()">
-    First name:<br />
-    <input type="text" name="FirstName" ng-model="vm.contact.firstName" required value="{{vm.contact.firstName}}"><br />
-    Last name:<br />
-    <input type="text" name="LastName" ng-model="vm.contact.lastName" required value="{{vm.contact.lastName}}"><br />
-    Email:<br />
-    <input type="email" name="Email" ng-model="vm.contact.email" value="{{vm.contact.email}}"><br />
-    Phone<br />
-    <input type="text" name="Phone" pattern="\+\d{11}|\d{9}" required ng-model="vm.contact.phone" title="The number must start with +370 or 8" value="{{vm.contact.phone}}"><br />
-    <br />
+﻿<div ng-controller="controllerCreate as ctrlCreate">
+    <form ng-submit="ctrlCreate.create()" >
+        First name:<br />
+        <input type="text" name="FirstName" ng-model="ctrlCreate.contact.firstName" required value="{{ctrlCreate.contact.firstName}}"><br />
+        Last name:<br />
+        <input type="text" name="LastName" ng-model="ctrlCreate.contact.lastName" required value="{{ctrlCreate.contact.lastName}}"><br />
+        Email:<br />
+        <input type="email" name="Email" ng-model="ctrlCreate.contact.email" value="{{ctrlCreate.contact.email}}"><br />
+        Phone<br />
+        <input type="text" name="Phone" pattern="\+\d{11}|\d{9}" required ng-model="ctrlCreate.contact.phone" title="The number must start with +370 or 8" value="{{ctrlCreate.contact.phone}}"><br />
+        <br />
 
-    <input class="btn btn-primary" type="submit" id="submit" value="Create contact" />
+        <input class="btn btn-primary" type="submit" id="submit" value="Create contact" />
+    </form>
+</div>
 
-</form>

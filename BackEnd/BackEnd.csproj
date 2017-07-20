@@ -161,6 +161,14 @@
     </Compile>
     <Compile Include="Models\IdentityClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\Models\Mail\Content.cs" />
+    <Compile Include="Services\Models\Sms\Essendex.cs" />
+    <Compile Include="Services\Models\Mail\From.cs" />
+    <Compile Include="Services\Models\Sms\Message.cs" />
+    <Compile Include="Services\Models\Mail\Personalizations.cs" />
+    <Compile Include="Services\Models\Mail\SendGridMail.cs" />
+    <Compile Include="Services\Models\Mail\To.cs" />
     <Compile Include="Services\SmsService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

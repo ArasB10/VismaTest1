@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -16,6 +17,7 @@ namespace BackEnd.Controllers
     {
         private IDataGetter data;
         private SmsService smsService = new SmsService();
+        private MailService mailService = new MailService();
 
         public MessageController(IDataGetter data)
         {
@@ -43,6 +45,7 @@ namespace BackEnd.Controllers
             {
                 message.ContactsId = id;
                 data.AddMessage(message);
+                SendMail(message.Text);
                 return Ok(message);
             }
             else
@@ -66,12 +69,23 @@ namespace BackEnd.Controllers
 
         // send message 
         [HttpGet]
-        [Route("api/send/{phone:long}/{message}")]
-        public void SendMessage(long phone, string message)
+        [Route("api/send/{message}")]
+        public IHttpActionResult SendMessage(string message)
         {
-            smsService.sendSms(phone, message);
-            var myphone = phone;
+            Task.Run(()=>smsService.sendSms(message));
+            
             var mymessage = message;
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/sendmail/{message}")]
+        public IHttpActionResult SendMail(string message)
+        {
+            Task.Run(() => mailService.sendMail(message));
+
+            
+            return Ok();
         }
     }
 }

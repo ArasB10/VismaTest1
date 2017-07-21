@@ -16,12 +16,13 @@ namespace BackEnd.Controllers
     public class MessageController : ApiController
     {
         private IDataGetter data;
-        private SmsService smsService = new SmsService();
-        private MailService mailService = new MailService();
+        //private SmsService smsService = new SmsService();
+        private IMailService mailService;
 
-        public MessageController(IDataGetter data)
+        public MessageController(IDataGetter data, IMailService mailService)
         {
             this.data = data;
+            this.mailService = mailService;
         }
 
         // GET: api/Message
@@ -39,13 +40,13 @@ namespace BackEnd.Controllers
 
         // POST: api/Message
         // id is the id of contact
-        public IHttpActionResult Post(int id, [FromBody]Message message)
+        public async Task<IHttpActionResult>  Post(int id, [FromBody]Message message)
         {
             if (ModelState.IsValid)
             {
                 message.ContactsId = id;
                 data.AddMessage(message);
-                SendMail(message.Text);
+                await SendMail(message.Text);
                 return Ok(message);
             }
             else
@@ -72,7 +73,7 @@ namespace BackEnd.Controllers
         [Route("api/send/{message}")]
         public IHttpActionResult SendMessage(string message)
         {
-            Task.Run(()=>smsService.sendSms(message));
+            //Task.Run(()=>smsService.sendSms(message));
             
             var mymessage = message;
             return Ok();
@@ -80,11 +81,10 @@ namespace BackEnd.Controllers
 
         [HttpGet]
         [Route("api/sendmail/{message}")]
-        public IHttpActionResult SendMail(string message)
+        public async Task<IHttpActionResult> SendMail(string message)
         {
-            Task.Run(() => mailService.sendMail(message));
 
-            
+            await mailService.sendMailAsync(message);
             return Ok();
         }
     }

@@ -7,22 +7,23 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 
 namespace BackEnd.Services
 {
-    public class MailService
+    public class MailService : IMailService
     {
 
         static HttpClient client = new HttpClient();
 
 
-        public void sendMail(string message)
-        {
-            var T = Task.Run(async () => await sendMailAsync(message));
-            var a = T.Result;
-        }
+        //public void sendMail(string message)
+        //{
+        //    var T = Task.Run(async () => await sendMailAsync(message));
+        //    var a = T.Result;
+        //}
 
-        public static async Task<HttpResponseMessage> sendMailAsync(String message)
+        public async Task<HttpResponseMessage> sendMailAsync(String message)
         {
 
             SendGridMail model = new SendGridMail
@@ -43,7 +44,7 @@ namespace BackEnd.Services
                 },
                 From = new From
                 {
-                    Email = "vismiukai@tuctuc.com"
+                    Email = "vism2017@example.com"
                 },
                 Content = new Content[]
                 {
@@ -68,7 +69,7 @@ namespace BackEnd.Services
             //};
 
 
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer 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");
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer "+ WebConfigurationManager.AppSettings["emailKey"]);
             StringContent content = new StringContent(JsonConvert.SerializeObject(model));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.sendgrid.com/v3/mail/send");

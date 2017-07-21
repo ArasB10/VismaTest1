@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using BackEnd.Controllers;
+using BackEnd.Services;
 using MyLibrary;
 using MyLibrary.Data;
 using System;
@@ -26,6 +27,7 @@ namespace BackEnd.App_Start
             builder.RegisterType<ContactsAppDbEntities>().InstancePerRequest();
 
             builder.RegisterType<DbGetter>().As<IDataGetter>().InstancePerRequest();
+            builder.RegisterType<FailService>().As<IMailService>().InstancePerRequest();
             //builder.RegisterType<>().As<IRepository<Message>>().InstancePerRequest();
 
             // OPTIONAL: Register the Autofac filter provider.

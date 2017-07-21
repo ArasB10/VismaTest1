@@ -55,6 +55,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -153,6 +156,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -161,7 +165,9 @@
     </Compile>
     <Compile Include="Models\IdentityClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\Implementations\FailService.cs" />
+    <Compile Include="Services\Interface\IMailService.cs" />
+    <Compile Include="Services\Implementations\MailService.cs" />
     <Compile Include="Services\Models\Mail\Content.cs" />
     <Compile Include="Services\Models\Sms\Essendex.cs" />
     <Compile Include="Services\Models\Mail\From.cs" />
@@ -169,7 +175,7 @@
     <Compile Include="Services\Models\Mail\Personalizations.cs" />
     <Compile Include="Services\Models\Mail\SendGridMail.cs" />
     <Compile Include="Services\Models\Mail\To.cs" />
-    <Compile Include="Services\SmsService.cs" />
+    <Compile Include="Services\Implementations\SmsService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

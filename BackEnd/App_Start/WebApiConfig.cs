@@ -16,9 +16,12 @@ namespace BackEnd
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling = ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
+            // Loger
+            log4net.Config.XmlConfigurator.Configure();
+
+            // Cors
             var cors = new EnableCorsAttribute("*", "*", "*") { SupportsCredentials = true };
             config.EnableCors(cors);
-            // Web API configuration and services
 
             // Web API routes
             config.MapHttpAttributeRoutes();
